@@ -2128,6 +2128,10 @@ static_assert(Y_MAX_LENGTH >= Y_BED_SIZE, "Movement bounds (Y_MIN_POS, Y_MAX_POS
   #undef X_ENDSTOP_INVERTING
   #undef Y_ENDSTOP_INVERTING
   #undef Z_ENDSTOP_INVERTING
+
+  #if ENABLED(SPI_ENDSTOPS) && (X_MIN_PIN >= 0 || Y_MIN_PIN >= 0)
+    #error "SPI_ENDSTOPS requires X_MIN_PIN and Y_MIN_PIN to be set to -1."
+  #endif
 #endif
 
 // Sensorless probing requirements
